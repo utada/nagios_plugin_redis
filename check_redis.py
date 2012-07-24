@@ -31,6 +31,7 @@ class Redis_check:
     except (socket.error,
             redis.exceptions.ConnectionError), e:
       self.nagios_return('CRITICAL', str(repr(e)))
+      sys.exit(self.nagios_codes['CRITICAL'])
     self.nagios_return('OK', 'Connect '+args.hostname+':'+args.port+' Redis version is '+info['redis_version'])
     sys.exit(self.nagios_codes['CRITICAL'])
 
